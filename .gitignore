@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+bashcare hub/node_modules/
+server/node_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.development
+server/.env
+bashcare hub/.env
+bashcare hub/.env.local
+bashcare hub/*.local
+
+# Production Build output
+dist/
+bashcare hub/dist/
+dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

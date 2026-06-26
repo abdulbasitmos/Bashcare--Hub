@@ -1,0 +1,18 @@
+[
+  {
+    "id": "user_1781090687354",
+    "email": "abdulbasitmoshood6@gmail.com",
+    "password": "$2b$10$nvOysxmDJZLzy.oZFEvG8.PcnoSGXXu.TVy5ziVQESp29pRmclqEi",
+    "name": "bdhckn ",
+    "role": "patient",
+    "status": "active"
+  },
+  {
+    "id": "user_1781090954871",
+    "email": "hameedusman0423@gmail.com",
+    "password": "$2b$10$tfT5zXwGzFQv6CzuHVPr9u.MaGsMNI1.mkDLaVjXpUwJB1i/wl6tS",
+    "name": "usman",
+    "role": "doctor",
+    "status": "active"
+  }
+]
