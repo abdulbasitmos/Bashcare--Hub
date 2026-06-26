@@ -72,12 +72,20 @@ const seedMasterStaff = async () => {
   }
 };
 
+if (!process.env.MONGODB_URI) {
+  console.error('🚨 FATAL ERROR: MONGODB_URI environment variable is not defined.');
+  console.error('Please configure MONGODB_URI in your environment settings before starting the server.');
+  process.exit(1);
+}
+
 mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB successfully.');
     await seedMasterStaff();
   })
-  .catch(err => console.error('Could not connect to MongoDB', err));
+  .catch(err => {
+    console.error('🚨 Could not connect to MongoDB. Connection failed:', err.message);
+  });
 
 // Load Swagger document
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
