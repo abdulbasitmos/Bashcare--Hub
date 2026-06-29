@@ -74,10 +74,22 @@ const DoctorDashboard = ({ user, logout }) => {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] dark:bg-slate-950 transition-colors">
-      <Sidebar role="doctor" onLogout={logout} />
+    <div className="relative flex min-h-screen bg-transparent transition-colors overflow-hidden">
+      {/* Background Video */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-10 z-0 pointer-events-none"
+      >
+        <source src="/videos/doctor_bg.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-slate-50/70 dark:bg-slate-950/80 backdrop-blur-[2px] z-0 pointer-events-none" />
 
-      <div className="flex-grow flex flex-col min-w-0">
+      <Sidebar role="doctor" onLogout={logout} className="relative z-10" />
+
+      <div className="flex-grow flex flex-col min-w-0 relative z-10">
         <TopNav userName={user?.name || "Dr. User"} role="doctor" />
 
         <main className="p-4 sm:p-6 lg:p-8">

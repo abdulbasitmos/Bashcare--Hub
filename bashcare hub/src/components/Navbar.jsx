@@ -74,8 +74,8 @@ const Navbar = () => {
       <div 
         className={`max-w-7xl mx-auto transition-all duration-500 ${
           isScrolled 
-            ? 'bg-white dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[24px] border border-gray-100/50 dark:border-slate-800/50 px-4 sm:px-6 lg:px-8' 
-            : 'bg-white dark:bg-slate-950/45 backdrop-blur-md border-b border-gray-150/20 px-4 sm:px-6 lg:px-8'
+            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[24px] border border-white/20 dark:border-slate-700/30 px-4 sm:px-6 lg:px-8' 
+            : 'bg-transparent border-b border-transparent px-4 sm:px-6 lg:px-8'
         }`}
       >
         <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-14 md:h-18' : 'h-16 md:h-22'}`}>

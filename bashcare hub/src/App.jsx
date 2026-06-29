@@ -38,6 +38,7 @@ import { db } from './utils/db';
 import { ThemeProvider } from './context/ThemeContext';
 import { SearchProvider } from './context/SearchContext';
 import { GlobalSettingsProvider } from './context/GlobalSettingsContext';
+import LandingV2 from './pages/LandingV2';
 
 const Home = () => (
   <div className="min-h-screen bg-[var(--bg-primary)]">
