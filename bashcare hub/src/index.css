@@ -64,11 +64,11 @@
   /* Default (Light) Mode */
   --bg-primary: #ffffff;
   --bg-secondary: #ffffff;
-  --text-primary: #1a2e2e;
-  --text-secondary: #4a6363;
-  --border-primary: #d1e0e0;
-  --color-primary: #0f3d3e;
-  --color-accent: #00bcd4;
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  --border-primary: #e2e8f0; /* Slate 200 */
+  --color-primary: #2563EB; /* Royal Blue */
+  --color-accent: #3b82f6; /* Blue 500 */
 }
 
 .dark {
@@ -78,8 +78,8 @@
   --text-primary: #f8fafc; /* Slate 50 */
   --text-secondary: #94a3b8; /* Slate 400 */
   --border-primary: #1e293b; /* Slate 800 */
-  --color-primary: #2dd4bf; /* Teal 400 */
-  --color-accent: #22d3ee;  /* Cyan 400 */
+  --color-primary: #3b82f6; /* Blue 500 */
+  --color-accent: #60a5fa;  /* Blue 400 */
 }
 
 @layer base {
@@ -298,7 +298,7 @@
 
 /* Medical Pharmaceutical Design Utilities */
 .medical-gradient-bg {
-  background: linear-gradient(180deg, #ecfeff 0%, #ffffff 30%, #f0fdfa 60%, #ecfeff 100%);
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 35%, #f8fafc 70%, #eff6ff 100%);
 }
 
 .dark .medical-gradient-bg {
@@ -319,21 +319,21 @@
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #ecfeff 0%, #ffffff 40%, #f0fdfa 100%);
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 40%, #f8fafc 100%);
 }
 .dark .hero-gradient {
   background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%) !important;
 }
 
 .features-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 50%, #ecfeff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #eff6ff 100%);
 }
 .dark .features-gradient {
   background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%) !important;
 }
 
 .services-gradient {
-  background: linear-gradient(180deg, #ecfeff 0%, #ffffff 50%, #f0fdfa 100%);
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 50%, #f8fafc 100%);
 }
 .dark .services-gradient {
   background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%) !important;

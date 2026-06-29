@@ -134,7 +134,7 @@ const Appointments = ({ user }) => {
     try {
       const session = await db.createCheckoutSession(id);
       if (session && session.url) {
-        window.location.href = session.url;
+        window.location.assign(session.url);
       } else {
         alert("Unable to create Stripe checkout session. Please try again.");
       }

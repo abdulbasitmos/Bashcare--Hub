@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Calendar, 
   Pill, 
@@ -17,6 +18,7 @@ import WellnessReportGenerator from '../../../components/dashboard/WellnessRepor
 import VitalsLogger from '../../../components/dashboard/VitalsLogger';
 
 const PatientOverview = ({ user }) => {
+  const navigate = useNavigate();
   const { t } = useGlobalSettings();
   const [stats, setStats] = useState({ appointments: 0, records: 0, prescriptions: 0 });
   const [announcements, setAnnouncements] = useState([]);

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { useState } from 'react';
 
 const BMICalculator = () => {
   const [activeTab, setActiveTab] = useState('bmi');
@@ -55,7 +54,7 @@ const BMICalculator = () => {
     e.preventDefault();
     if (calWeight && calHeight && calAge) {
       // Harris-Benedict Equation
-      let bmr = 0;
+      let bmr;
       if (calGender === 'male') {
         bmr = 88.362 + (13.397 * calWeight) + (4.799 * calHeight) - (5.677 * calAge);
       } else {

@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import TopNav from '../../components/dashboard/TopNav';
 import { 
+  Calendar,
   ShieldCheck, 
   Clock, 
   Search,
