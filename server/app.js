@@ -78,14 +78,41 @@ if (!process.env.MONGODB_URI) {
   process.exit(1);
 }
 
-mongoose.connect(process.env.MONGODB_URI)
-  .then(async () => {
+// MongoDB connection with serverless-friendly options
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) return;
+  
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 30000,
+      maxPoolSize: 10,
+      minPoolSize: 1,
+      retryWrites: true,
+      retryReads: true,
+    });
+    isConnected = true;
     console.log('Connected to MongoDB successfully.');
     await seedMasterStaff();
-  })
-  .catch(err => {
+  } catch (err) {
     console.error('🚨 Could not connect to MongoDB. Connection failed:', err.message);
-  });
+    isConnected = false;
+  }
+};
+
+// Initial connection
+connectDB();
+
+// Reconnect on disconnection
+mongoose.connection.on('disconnected', () => {
+  console.warn('MongoDB disconnected. Attempting reconnect...');
+  isConnected = false;
+});
+
+
 
 // Load Swagger document
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
@@ -96,6 +123,18 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(passport.initialize());
+
+// Middleware to ensure DB is connected before handling requests
+app.use(async (req, res, next) => {
+  if (!isConnected || mongoose.connection.readyState !== 1) {
+    try {
+      await connectDB();
+    } catch (err) {
+      return res.status(503).json({ message: 'Database connection unavailable. Please try again.' });
+    }
+  }
+  next();
+});
 
 // Routes
 const authRoutes = require('./src/routes/auth');
