@@ -126,7 +126,7 @@ const TopNav = ({ userName = "User", role = "patient" }) => {
   }, [role]);
 
   return (
-    <header className="h-20 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-30 px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300">
+    <header className="h-20 bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800/80 sticky top-0 z-30 px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
       {/* Mobile Sidebar Toggle */}
       <button
         type="button"
@@ -150,7 +150,7 @@ const TopNav = ({ userName = "User", role = "patient" }) => {
               setShowSuggestions(true);
             }}
             onFocus={() => setShowSuggestions(true)}
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-transparent focus:border-blue-200 focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-12 pr-4 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-sm text-slate-900 dark:text-slate-100 shadow-sm"
+            className="w-full bg-white/60 dark:bg-slate-800/60 border border-white/35 dark:border-slate-700/30 focus:border-blue-200 focus:bg-white dark:focus:bg-slate-900 rounded-2xl py-3 pl-12 pr-4 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-sm text-slate-900 dark:text-slate-100 shadow-sm"
           />
           <button type="submit" className="hidden">Search</button>
 

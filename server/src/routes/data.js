@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 });
 
 // Users
-router.get('/users', roleMiddleware(['admin']), dataController.getAll('users'));
+router.get('/users', roleMiddleware(['admin', 'doctor', 'officer']), dataController.getAll('users'));
 router.get('/users/:id', dataController.getById('users'));
 router.post('/users', roleMiddleware(['admin']), dataController.save('users'));
 router.patch('/users/:id', (req, res, next) => {

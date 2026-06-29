@@ -34,8 +34,41 @@ import AdminMeetings from './admin/AdminMeetings';
 import Notifications from './patient/Notifications';
 
 const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnouncement, setNewAnnouncement, onDeleteAnnouncement, allUsers = [], navigate }) => {
+  const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+  const currentDateString = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const currentTimeString = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-[1600px] mx-auto">
+      
+      {/* Welcome Banner Card */}
+      <div className="bg-gradient-to-r from-[#2563EB] to-[#4F46E5] rounded-[32px] p-8 text-white relative overflow-hidden shadow-lg shadow-blue-500/10">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/3 w-32 h-32 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold tracking-wide">
+              <Calendar size={13} />
+              <span>{currentDateString} • {currentTimeString}</span>
+            </div>
+            <div>
+              <h1 className="text-3xl font-black tracking-tight">System Operations Console</h1>
+              <p className="text-white/80 text-sm mt-1">We hope you are having a nice {currentDayName}. Access real-time monitoring and administrative tools.</p>
+            </div>
+          </div>
+
+          <div className="hidden md:block flex-shrink-0 pr-4">
+            <svg className="w-24 h-24 text-white opacity-85" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 15C50 15 32 30 32 52C32 63.0457 40.0543 72.1 50 72.1C59.9457 72.1 68 63.0457 68 52C68 30 50 15 50 15Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M50 40V64" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M38 52H62" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="50" cy="52" r="28" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
@@ -44,22 +77,21 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="bg-[var(--bg-secondary)]  p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  transition-colors"
+            className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)] space-y-4"
           >
-            <div className="flex justify-between items-start mb-4">
-              <div className={`p-4 rounded-2xl ${stat.bg} `}>
+            <div className="flex justify-between items-start">
+              <div className={`p-3.5 rounded-2xl ${stat.bg}`}>
                 {stat.icon}
               </div>
-              <div className={`flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-full ${
-                stat.up ? 'text-green-600 bg-green-50 ' : 'text-red-600 bg-red-50 '
+              <div className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                stat.up ? 'text-green-600 bg-green-50 dark:bg-green-950/20' : 'text-red-600 bg-red-50 dark:bg-red-950/20'
               }`}>
-                {stat.up ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
                 {stat.change}
               </div>
             </div>
             <div>
-              <p className="text-2xl font-black text-slate-900 ">{stat.value}</p>
-              <p className="text-xs font-bold text-slate-500 (--text-secondary)] uppercase tracking-wider mt-1">{stat.label}</p>
+              <p className="text-3xl font-black text-slate-900 dark:text-slate-100">{stat.value}</p>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">{stat.label}</p>
             </div>
           </motion.div>
         ))}
@@ -67,67 +99,64 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Announcements Preview */}
-        <div className="lg:col-span-2 space-y-6">
-          <section className="bg-[var(--bg-secondary)]  p-8 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  transition-colors">
+        <div className="lg:col-span-2 space-y-8">
+          <section className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-xl font-bold text-slate-900 ">Recent Broadcasts</h2>
+              <h2 className="text-base font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">Recent Broadcasts</h2>
             </div>
             <div className="space-y-6">
               {announcements.length > 0 ? announcements.slice(0, 5).map((ann) => (
-                <div key={ann.id || ann._id} className="flex gap-6 p-6 bg-white  rounded-[24px] border border-slate-100  relative group">
-                  <div className="w-12 h-12 bg-[var(--bg-secondary)]  rounded-2xl flex items-center justify-center text-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 flex-shrink-0">
+                <div key={ann.id || ann._id} className="flex gap-6 p-6 bg-slate-50/40 dark:bg-slate-800/30 rounded-[24px] border border-slate-100 dark:border-slate-800/50 relative group">
+                  <div className="w-12 h-12 bg-white dark:bg-slate-950 rounded-2xl flex items-center justify-center text-[#2563EB] shadow-sm flex-shrink-0">
                     <Megaphone size={20} />
                   </div>
                   <div className="flex-grow pr-8">
                     <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-bold text-slate-900 ">{ann.title}</h3>
-                      <span className="px-2 py-0.5 bg-blue-100  text-[var(--color-primary)]  text-[10px] font-bold rounded-full uppercase">To: {ann.targetRole || ann.target || 'all'}</span>
+                      <h3 className="font-bold text-slate-900 dark:text-slate-100">{ann.title}</h3>
+                      <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-[#2563EB] text-[10px] font-bold rounded-full uppercase">To: {ann.targetRole || ann.target || 'all'}</span>
                     </div>
-                    <p className="text-sm text-gray-600 (--text-secondary)] leading-relaxed mb-3">{ann.content}</p>
+                    <p className="text-sm text-gray-600 dark:text-slate-350 leading-relaxed mb-3">{ann.content}</p>
                     <p className="text-[10px] text-slate-500 font-bold mb-4">
                       {ann.createdAt ? new Date(ann.createdAt).toLocaleDateString() : ann.date}
                     </p>
 
                     {/* Announcement Comments View for Admin */}
-                    <div className="border-t border-slate-100  pt-4">
-                      <h5 className="text-xs font-bold text-slate-500 uppercase mb-3 flex items-center gap-1.5">
-                        <MessageSquare size={14} /> Comments ({ann.comments?.length || 0})
+                    <div className="border-t border-slate-200/60 dark:border-slate-700/40 pt-4">
+                      <h5 className="text-[10px] font-bold text-slate-400 uppercase mb-3 flex items-center gap-1.5">
+                        <MessageSquare size={12} /> Comments ({ann.comments?.length || 0})
                       </h5>
                       {ann.comments && ann.comments.length > 0 ? (
-                        <div className="space-y-3 max-h-48 overflow-y-auto mb-3 pr-2">
+                        <div className="space-y-3 max-h-48 overflow-y-auto mb-3 pr-2 custom-scrollbar">
                           {ann.comments.map((comment, idx) => {
-                            const commenter = allUsers.find(u => (u.id || u._id) === comment.userId);
+                            if (!comment) return null;
+                            const commenter = comment.userId ? allUsers.find(u => u && (u.id || u._id) === comment.userId) : null;
                             const role = commenter ? commenter.role : 'User';
                             return (
-                              <div key={comment._id || idx} className="p-3 bg-white  rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-slate-100  text-xs">
+                              <div key={comment._id || idx} className="p-3 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100/80 dark:border-slate-800/50 text-xs">
                                 <div className="flex justify-between items-center mb-1">
                                   <div className="flex items-center gap-2">
-                                    <span className="font-bold text-slate-900 ">{comment.userName}</span>
-                                    <span className={`px-1.5 py-0.5 rounded text-[8px] font-black uppercase ${
-                                      role === 'Doctor' 
-                                        ? 'bg-blue-50/50 text-[#2563EB]  ' 
-                                        : 'bg-white text-slate-600  '
-                                    }`}>
+                                    <span className="font-bold text-slate-800 dark:text-slate-200">{comment.userName}</span>
+                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase bg-slate-50 dark:bg-slate-850 text-slate-500">
                                       {role}
                                     </span>
                                   </div>
-                                  <span className="text-[9px] text-slate-500">
+                                  <span className="text-[9px] text-slate-400">
                                     {new Date(comment.createdAt).toLocaleString()}
                                   </span>
                                 </div>
-                                <p className="text-gray-600  font-medium">{comment.text}</p>
+                                <p className="text-gray-600 dark:text-slate-300 font-medium">{comment.text}</p>
                               </div>
                             );
                           })}
                         </div>
                       ) : (
-                        <p className="text-xs text-slate-500 italic mb-3">No comments posted yet.</p>
+                        <p className="text-xs text-slate-400 italic mb-3">No comments posted yet.</p>
                       )}
                     </div>
                   </div>
                   <button
                     onClick={() => onDeleteAnnouncement(ann.id || ann._id)}
-                    className="absolute top-6 right-6 p-2 text-[#EF4444] hover:text-red-700 bg-red-50  rounded-xl transition-all hover:scale-105"
+                    className="absolute top-6 right-6 p-2 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-xl transition-all border-none bg-transparent cursor-pointer"
                     title="Delete Announcement"
                   >
                     <Trash2 size={16} />
@@ -140,34 +169,34 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
           </section>
 
           {/* Broadcast Form */}
-          <section className="bg-[var(--bg-secondary)]  p-8 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  transition-colors">
+          <section className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-blue-100  rounded-2xl flex items-center justify-center text-[var(--color-primary)]">
+              <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/30 rounded-2xl flex items-center justify-center text-[#2563EB]">
                 <Megaphone size={24} />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-slate-900 ">Broadcast New Message</h2>
-                <p className="text-sm text-slate-500">Send an announcement to specific user roles.</p>
+                <h2 className="text-base font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">Broadcast New Message</h2>
+                <p className="text-xs text-slate-400">Send an announcement to specific user roles.</p>
               </div>
             </div>
 
             <form onSubmit={onPostAnnouncement} className="space-y-6">
               <div>
-                <label className="block text-sm font-bold text-slate-500  mb-2">Announcement Title</label>
+                <label className="block text-xs font-bold text-slate-450 uppercase mb-2">Announcement Title</label>
                 <input 
                   type="text" 
                   value={newAnnouncement.title}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, title: e.target.value})}
                   placeholder="e.g., System Maintenance"
-                  className="w-full bg-[#f8fafc]  border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-blue-500/20 text-slate-900 "
+                  className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-[#2563EB] text-slate-900 dark:text-slate-100 outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-500  mb-2">Target Audience</label>
+                <label className="block text-xs font-bold text-slate-450 uppercase mb-2">Target Audience</label>
                 <select 
                   value={newAnnouncement.target}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, target: e.target.value})}
-                  className="w-full bg-[#f8fafc]  border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-blue-500/20 text-slate-900 "
+                  className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-[#2563EB] text-slate-900 dark:text-slate-100 outline-none"
                 >
                   <option value="all">Everyone</option>
                   <option value="doctor">Doctors Only</option>
@@ -175,16 +204,16 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-500  mb-2">Message Content</label>
+                <label className="block text-xs font-bold text-slate-450 uppercase mb-2">Message Content</label>
                 <textarea 
                   rows="4"
                   value={newAnnouncement.content}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, content: e.target.value})}
                   placeholder="Write your announcement here..."
-                  className="w-full bg-[#f8fafc]  border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-blue-500/20 resize-none text-slate-900 "
+                  className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-[#2563EB] resize-none text-slate-900 dark:text-slate-100 outline-none"
                 ></textarea>
               </div>
-              <button type="submit" className="w-full py-4 bg-[var(--color-primary)] text-white rounded-2xl font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-[0.98]">
+              <button type="submit" className="w-full py-4 bg-[#2563EB] text-white rounded-2xl font-bold hover:opacity-90 transition-all active:scale-[0.98] cursor-pointer border-none">
                 Broadcast Announcement
               </button>
             </form>
@@ -193,8 +222,8 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
 
         {/* Management Sidebar */}
         <div className="space-y-6">
-          <section className="bg-[var(--bg-secondary)]  p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  transition-colors">
-            <h3 className="text-lg font-bold text-slate-900  mb-6">Operations</h3>
+          <section className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
+            <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide mb-6">Operations</h3>
             <div className="space-y-3">
               {[
                 { label: 'Verification Monitor', icon: <ShieldCheck size={18} />, path: 'verifications' },
@@ -206,15 +235,15 @@ const AdminOverview = ({ stats, announcements, onPostAnnouncement, newAnnounceme
                 <button 
                   key={i} 
                   onClick={() => navigate(`/dashboard/admin/${tool.path}`)}
-                  className="w-full flex items-center justify-between p-4 bg-[#f8fafc]  rounded-2xl hover:bg-[#f8fafc] dark:bg-slate-900 transition-all group"
+                  className="w-full flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 rounded-2xl hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-all group cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-[var(--bg-secondary)]  rounded-xl text-slate-500 group-hover:text-[var(--color-primary)] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 transition-colors">
+                    <div className="p-2 bg-white dark:bg-slate-900 rounded-xl text-slate-500 group-hover:text-[#2563EB] shadow-sm transition-colors">
                       {tool.icon}
                     </div>
-                    <span className="text-sm font-bold text-slate-500 ">{tool.label}</span>
+                    <span className="text-sm font-bold text-slate-650 dark:text-slate-350">{tool.label}</span>
                   </div>
-                  <ChevronRight size={16} className="text-gray-300 group-hover:text-gray-600" />
+                  <ChevronRight size={16} className="text-slate-400 group-hover:text-slate-700" />
                 </button>
               ))}
             </div>
@@ -316,7 +345,7 @@ const UserManagement = ({ users, onDelete, onToggleStatus, onAddStaff, title = "
                               ? 'bg-amber-100 text-amber-600'
                               : 'bg-green-100 text-green-600'
                       }`}>
-                        {u.name.split(' ').map(n => n[0]).join('')}
+                        {(u.name || 'S').split(' ').map(n => n[0]).join('')}
                       </div>
                       <div>
                         <p className="font-bold text-slate-900 text-sm">{u.name}</p>
@@ -1440,66 +1469,94 @@ const PlatformSettings = () => {
   );
 };
 
-const PatientManagement = ({ patients, onDelete, onToggleStatus }) => (
-  <section className="bg-[var(--bg-secondary)]  rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  overflow-hidden transition-colors">
-    <div className="p-8 border-b border-gray-50  flex items-center justify-between">
-      <h2 className="text-xl font-bold text-slate-900 ">Global Patient Directory</h2>
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
-        <input 
-          type="text" 
-          placeholder="Search patients..." 
-          className="pl-10 pr-4 py-2 bg-white  border-none rounded-xl text-xs focus:ring-2 focus:ring-blue-500/20 w-64 text-slate-900 "
-        />
+const PatientManagement = ({ patients, onDelete, onToggleStatus }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filtered = patients.filter(p => 
+    p.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    p.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.id?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-base font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">Global Patient Directory</h2>
+            <p className="text-xs text-slate-400 font-semibold mt-0.5">Manage users, toggle access rights, and delete profiles.</p>
+          </div>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
+            <input 
+              type="text" 
+              placeholder="Search patients by name or email..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-xs focus:ring-2 focus:ring-[#2563EB] w-64 text-slate-900 dark:text-slate-100 outline-none"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="overflow-x-auto">
-      <table className="w-full text-left">
-        <thead>
-          <tr className="bg-white  text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-gray-50 ">
-            <th className="px-8 py-4">Patient Name</th>
-            <th className="px-8 py-4">Contact</th>
-            <th className="px-8 py-4">Status</th>
-            <th className="px-8 py-4 text-right">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-50 ">
-          {patients.map((p, i) => (
-            <tr key={i} className="hover:bg-white dark:bg-slate-900/50 transition-colors">
-              <td className="px-8 py-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-100  text-green-600  flex items-center justify-center font-bold text-xs">
-                    {p.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900  text-sm">{p.name}</p>
-                    <p className="text-[11px] text-slate-500 (--text-secondary)]">ID: {p.id.slice(-8).toUpperCase()}</p>
-                  </div>
+
+      {filtered.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((p, i) => (
+            <div key={p.id || i} className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.01)] hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-6">
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/10 text-[#2563EB] flex items-center justify-center font-black text-sm uppercase">
+                  {(p.name || 'P').split(' ').map(n => n[0]).join('').slice(0, 2)}
                 </div>
-              </td>
-              <td className="px-8 py-6">
-                <p className="text-sm font-medium text-slate-500 ">{p.email}</p>
-              </td>
-              <td className="px-8 py-6">
-                <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-                  p.status === 'active' ? 'bg-green-100 text-green-700  ' : 'bg-red-100 text-red-700  '
-                }`}>
-                  {p.status}
-                </span>
-              </td>
-              <td className="px-8 py-6 text-right">
-                <div className="flex items-center justify-end gap-2">
-                  <button onClick={() => onToggleStatus(p.id, 'Patient', p.status)} className="p-2 text-slate-500 hover:text-[var(--color-primary)] dark:text-blue-400 transition-colors"><ShieldCheck size={18} /></button>
-                  <button onClick={() => onDelete(p.id, 'Patient')} className="p-2 text-slate-500 hover:text-red-600 dark:text-red-400 transition-colors"><Trash2 size={18} /></button>
+                <div>
+                  <h4 className="font-bold text-slate-800 dark:text-slate-200 text-sm leading-tight">{p.name}</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">ID: {p.id?.slice(-8).toUpperCase()}</p>
                 </div>
-              </td>
-            </tr>
+              </div>
+
+              <div className="space-y-3 border-t border-slate-50 dark:border-slate-800/50 pt-4 text-xs font-semibold text-slate-500">
+                <div className="flex justify-between items-center">
+                  <span>Contact</span>
+                  <span className="text-slate-800 dark:text-slate-200 truncate max-w-[180px]">{p.email}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Access Status</span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider ${
+                    p.status === 'active' ? 'bg-green-100 text-green-700 dark:bg-green-950/30 dark:text-green-400' : 'bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400'
+                  }`}>
+                    {p.status}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 border-t border-slate-50 dark:border-slate-800/50 pt-4">
+                <button 
+                  onClick={() => onToggleStatus(p.id, 'Patient', p.status)} 
+                  className="px-3 py-2 bg-slate-50 hover:bg-blue-50/50 dark:bg-slate-800/40 dark:hover:bg-blue-950/20 text-slate-500 hover:text-[#2563EB] dark:text-blue-400 rounded-xl text-[11px] font-bold transition-all flex items-center gap-1 border-none cursor-pointer"
+                  title="Toggle active status"
+                >
+                  <ShieldCheck size={14} /> Toggle
+                </button>
+                <button 
+                  onClick={() => onDelete(p.id, 'Patient')} 
+                  className="px-3 py-2 bg-red-50 hover:bg-red-100 dark:bg-red-950/20 text-red-500 hover:text-red-600 rounded-xl text-[11px] font-bold transition-all flex items-center gap-1 border-none cursor-pointer"
+                  title="Delete user profile"
+                >
+                  <Trash2 size={14} /> Delete
+                </button>
+              </div>
+
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      ) : (
+        <div className="text-center py-12 text-slate-400 font-medium bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/60 rounded-[28px] shadow-[0_8px_30px_rgb(0,0,0,0.01)]">
+          No patients found matching the query.
+        </div>
+      )}
     </div>
-  </section>
-);
+  );
+};
 
 
 
@@ -1659,7 +1716,7 @@ const AdminDashboard = ({ user, logout }) => {
   if (loading) return <div className="p-8 text-center font-bold text-slate-500 (--text-secondary)]">Loading admin console...</div>;
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] dark:bg-slate-950 transition-colors">
+    <div className="flex min-h-screen medical-gradient-bg dark:bg-slate-950 transition-colors">
       <Sidebar role="admin" onLogout={logout} />
       
       <div className="flex-grow flex flex-col min-w-0">

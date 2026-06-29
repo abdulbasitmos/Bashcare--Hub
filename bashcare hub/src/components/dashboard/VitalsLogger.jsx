@@ -57,13 +57,13 @@ const VitalsLogger = ({ user }) => {
   };
 
   return (
-    <div className="bg-white  p-8 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-gray-200  transition-all space-y-6">
+    <div className="bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800/40 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.01)] space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-slate-900  flex items-center gap-2">
-            <Activity className="text-[#EF4444] animate-pulse" size={22} /> Daily Vitals & Symptoms
+          <h2 className="font-black text-slate-800 dark:text-slate-200 text-base flex items-center gap-2">
+            <Activity className="text-red-500 animate-pulse" size={20} /> Daily Vitals & Symptoms
           </h2>
-          <p className="text-xs text-slate-500  mt-1">Track and log your key health metrics daily.</p>
+          <p className="text-xs text-slate-400 font-semibold mt-1">Track and log your key health metrics daily.</p>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ const VitalsLogger = ({ user }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-green-50  text-green-600  p-3 rounded-xl flex items-center gap-2 font-bold text-xs border border-green-100 "
+            className="bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400 p-3 rounded-xl flex items-center gap-2 font-bold text-xs border border-green-100 dark:border-green-900/30"
           >
             <CheckCircle2 size={16} />
             Vitals logged successfully! Your doctor can view these updates.
@@ -85,47 +85,47 @@ const VitalsLogger = ({ user }) => {
         {/* Form Inputs Grid */}
         <div className="grid grid-cols-2 gap-4">
           {/* BP */}
-          <div className="p-4 bg-white  rounded-2xl border border-slate-100 ">
-            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Blood Pressure</label>
+          <div className="p-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl">
+            <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-2">Blood Pressure</label>
             <div className="flex items-center gap-2">
               <input 
                 type="number" 
                 value={systolic} 
                 onChange={(e) => setSystolic(e.target.value)} 
-                className="w-12 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 "
+                className="w-12 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 dark:text-slate-100 border-none"
                 placeholder="Sys" 
               />
-              <span className="text-gray-300">/</span>
+              <span className="text-slate-300 dark:text-slate-655">/</span>
               <input 
                 type="number" 
                 value={diastolic} 
                 onChange={(e) => setDiastolic(e.target.value)} 
-                className="w-12 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 "
+                className="w-12 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 dark:text-slate-100 border-none"
                 placeholder="Dia" 
               />
-              <span className="text-[10px] text-gray-400 font-bold ml-auto">mmHg</span>
+              <span className="text-[10px] text-slate-400 font-bold ml-auto">mmHg</span>
             </div>
           </div>
 
           {/* Heart Rate */}
-          <div className="p-4 bg-white  rounded-2xl border border-slate-100 ">
-            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 flex items-center gap-1">
-              <Heart size={10} className="text-[#EF4444]" /> Heart Rate
+          <div className="p-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl">
+            <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-2 flex items-center gap-1">
+              <Heart size={10} className="text-red-500" /> Heart Rate
             </label>
             <div className="flex items-center justify-between">
               <input 
                 type="number" 
                 value={heartRate} 
                 onChange={(e) => setHeartRate(e.target.value)} 
-                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 " 
+                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 dark:text-slate-100 border-none" 
               />
-              <span className="text-[10px] text-gray-400 font-bold">bpm</span>
+              <span className="text-[10px] text-slate-400 font-bold">bpm</span>
             </div>
           </div>
 
           {/* Temperature */}
-          <div className="p-4 bg-white  rounded-2xl border border-slate-100 ">
-            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 flex items-center gap-1">
+          <div className="p-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl">
+            <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-2 flex items-center gap-1">
               <Thermometer size={10} className="text-orange-500" /> Temperature
             </label>
             <div className="flex items-center justify-between">
@@ -134,15 +134,15 @@ const VitalsLogger = ({ user }) => {
                 step="0.1" 
                 value={temperature} 
                 onChange={(e) => setTemperature(e.target.value)} 
-                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 " 
+                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 dark:text-slate-100 border-none" 
               />
-              <span className="text-[10px] text-gray-400 font-bold">°F</span>
+              <span className="text-[10px] text-slate-400 font-bold">°F</span>
             </div>
           </div>
 
           {/* Blood Sugar */}
-          <div className="p-4 bg-white  rounded-2xl border border-slate-100 ">
-            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 flex items-center gap-1">
+          <div className="p-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl">
+            <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-2 flex items-center gap-1">
               <Droplet size={10} className="text-teal-500" /> Blood Sugar
             </label>
             <div className="flex items-center justify-between">
@@ -150,26 +150,26 @@ const VitalsLogger = ({ user }) => {
                 type="number" 
                 value={sugar} 
                 onChange={(e) => setSugar(e.target.value)} 
-                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 " 
+                className="w-16 bg-transparent text-sm font-bold focus:ring-0 outline-none text-slate-900 dark:text-slate-100 border-none" 
               />
-              <span className="text-[10px] text-gray-400 font-bold">mg/dL</span>
+              <span className="text-[10px] text-slate-400 font-bold">mg/dL</span>
             </div>
           </div>
         </div>
 
         {/* Symptoms Tracker */}
-        <div className="p-4 bg-white  rounded-2xl border border-slate-100  space-y-3">
-          <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">Active Symptoms</label>
+        <div className="p-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl space-y-3">
+          <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block">Active Symptoms</label>
           <div className="grid grid-cols-3 gap-2">
             {['None', 'Headache', 'Cough', 'Fatigue', 'Fever', 'Pain'].map((sym) => (
               <button
                 type="button"
                 key={sym}
                 onClick={() => setSelectedSymptom(sym)}
-                className={`py-1.5 px-2 rounded-xl text-xs font-bold transition-all border ${
+                className={`py-1.5 px-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                   selectedSymptom === sym
-                    ? 'bg-[#2563EB] border-blue-600 text-white shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300'
-                    : 'bg-white  border-slate-200  text-slate-600  hover:bg-white'
+                    ? 'bg-[#2563EB] border-[#2563EB] text-white shadow-sm'
+                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-850 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-850'
                 }`}
               >
                 {sym}
@@ -178,9 +178,9 @@ const VitalsLogger = ({ user }) => {
           </div>
           {selectedSymptom !== 'None' && (
             <div className="pt-2 space-y-1">
-              <div className="flex justify-between text-[10px] font-bold text-gray-400">
+              <div className="flex justify-between text-[10px] font-bold text-slate-400 dark:text-slate-500">
                 <span>Severity Scale</span>
-                <span className="text-[#2563EB] ">{symptomSeverity}/10</span>
+                <span className="text-[#2563EB] dark:text-teal-400">{symptomSeverity}/10</span>
               </div>
               <input 
                 type="range" 
@@ -188,7 +188,7 @@ const VitalsLogger = ({ user }) => {
                 max="10" 
                 value={symptomSeverity} 
                 onChange={(e) => setSymptomSeverity(e.target.value)}
-                className="w-full accent-blue-600"
+                className="w-full accent-[#2563EB] cursor-pointer"
               />
             </div>
           )}
@@ -196,29 +196,29 @@ const VitalsLogger = ({ user }) => {
 
         <button
           type="submit"
-          className="w-full py-4 bg-[#2563EB] text-white rounded-2xl text-sm font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md shadow-blue-600/20"
+          className="w-full py-4 bg-[#2563EB] text-white rounded-2xl text-xs font-bold hover:bg-blue-600 transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md shadow-blue-600/20 border-none cursor-pointer"
         >
           <PlusCircle size={16} /> Log Today's Metrics
         </button>
       </form>
 
       {/* Log History */}
-      <div className="space-y-3 pt-4 border-t border-slate-100 ">
-        <h4 className="text-xs font-bold text-slate-900  flex items-center gap-1.5">
+      <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+        <h4 className="text-[10px] font-bold text-slate-450 uppercase tracking-wider flex items-center gap-1.5">
           <TrendingUp size={14} className="text-[#22C55E]" /> Recent Vitals History
         </h4>
-        <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
+        <div className="space-y-2 max-h-40 overflow-y-auto pr-1 custom-scrollbar">
           {vitalsList.map((log) => (
             <div 
               key={log.id} 
-              className="p-3 bg-white  rounded-xl flex items-center justify-between text-xs border border-slate-100 "
+              className="p-3 bg-slate-50/40 dark:bg-slate-800/30 rounded-xl flex items-center justify-between text-xs border border-slate-100/50 dark:border-slate-800/50 hover:bg-blue-50/20 transition-colors"
             >
               <div>
-                <p className="font-bold text-slate-900 ">BP: {log.bp} | HR: {log.hr} bpm</p>
-                <p className="text-[10px] text-gray-400 mt-0.5">{log.date} {log.symptom !== 'None' && `• Sym: ${log.symptom} (${log.severity}/10)`}</p>
+                <p className="font-bold text-slate-800 dark:text-slate-200">BP: {log.bp} | HR: {log.hr} bpm</p>
+                <p className="text-[10px] text-slate-450 font-semibold mt-0.5">{log.date} {log.symptom !== 'None' && `• Sym: ${log.symptom} (${log.severity}/10)`}</p>
               </div>
               <div className="text-right">
-                <span className="font-bold text-orange-500">{log.temp}°F</span>
+                <span className="font-black text-orange-500">{log.temp}°F</span>
                 <span className="block text-[10px] text-teal-500 font-bold">{log.sugar} mg/dL</span>
               </div>
             </div>

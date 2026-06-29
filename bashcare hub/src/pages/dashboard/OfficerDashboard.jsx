@@ -875,37 +875,63 @@ const OfficerDashboard = ({ user, logout }) => {
     }
   };
 
+  const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+  const currentDateString = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const currentTimeString = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
   const stats = [
-    { label: t('pending'), value: pendingDoctors.length.toString(), icon: <Clock className="text-[var(--color-primary)]" />, bg: 'bg-[#f8fafc]' },
-    { label: t('directory'), value: verifiedDoctors.length.toString(), icon: <CheckCircle2 className="text-green-600" />, bg: 'bg-green-50' },
-    { label: 'Flagged Profiles', value: '0', icon: <AlertCircle className="text-red-600" />, bg: 'bg-red-50' },
-    { label: 'Active Sessions', value: selectedDoctor ? '1' : '0', icon: <MessageSquare className="text-amber-600" />, bg: 'bg-amber-50' },
+    { label: t('pending'), value: pendingDoctors.length.toString(), icon: <Clock className="text-[#2563EB]" />, bg: 'bg-blue-50/50 dark:bg-blue-950/30' },
+    { label: t('directory'), value: verifiedDoctors.length.toString(), icon: <CheckCircle2 className="text-green-600 dark:text-green-400" />, bg: 'bg-green-50/50 dark:bg-green-950/30' },
+    { label: 'Flagged Profiles', value: '0', icon: <AlertCircle className="text-red-600 dark:text-red-400" />, bg: 'bg-red-50/50 dark:bg-red-950/30' },
+    { label: 'Active Sessions', value: selectedDoctor ? '1' : '0', icon: <MessageSquare className="text-amber-600 dark:text-amber-400" />, bg: 'bg-amber-50/50 dark:bg-amber-950/30' },
   ];
 
   if (loading) return <div className="p-8 text-center font-bold text-slate-500 (--text-secondary)]">Loading verification hub...</div>;
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] dark:bg-slate-950 transition-colors overflow-hidden">
+    <div className="flex min-h-screen medical-gradient-bg dark:bg-slate-950 transition-colors overflow-hidden">
       <Sidebar role="officer" onLogout={logout} />
       
       <div className="flex-grow flex flex-col h-screen overflow-hidden min-w-0">
         <TopNav userName={user?.name || "Officer"} role="officer" />
         
-        <main className="p-4 sm:p-6 lg:p-8 flex-grow flex flex-col gap-8 overflow-hidden">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900 ">Verification Hub 🛡️</h1>
-              <p className="text-slate-500 (--text-secondary)] mt-1">Review credentials and interview medical applicants.</p>
+        <main className="p-4 sm:p-6 lg:p-8 flex-grow flex flex-col gap-8 overflow-hidden custom-scrollbar overflow-y-auto">
+          
+          {/* Welcome Banner Card */}
+          <div className="bg-gradient-to-r from-[#2563EB] to-[#4F46E5] rounded-[32px] p-8 text-white relative overflow-hidden shadow-lg shadow-blue-500/10 flex-shrink-0">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-1/3 w-32 h-32 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold tracking-wide">
+                  <Calendar size={13} />
+                  <span>{currentDateString} • {currentTimeString}</span>
+                </div>
+                <div>
+                  <h1 className="text-3xl font-black tracking-tight">Verification Command Center</h1>
+                  <p className="text-white/80 text-sm mt-1">We hope you are having a nice {currentDayName}. Review credentials and interview medical applicants.</p>
+                </div>
+              </div>
+
+              <div className="hidden md:block flex-shrink-0 pr-4">
+                <svg className="w-24 h-24 text-white opacity-85" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 15C50 15 32 30 32 52C32 63.0457 40.0543 72.1 50 72.1C59.9457 72.1 68 63.0457 68 52C68 30 50 15 50 15Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M50 40V64" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                  <path d="M38 52H62" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                  <circle cx="50" cy="52" r="28" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3"/>
+                </svg>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 flex-shrink-0">
             {stats.map((stat, i) => (
-              <div key={i} className="bg-[var(--bg-secondary)]  p-6 rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  flex items-center gap-4 transition-colors">
+              <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.015)] border border-gray-100 dark:border-slate-800/40 flex items-center gap-4 transition-all hover:shadow-md">
                 <div className={`p-4 rounded-2xl ${stat.bg} `}>{stat.icon}</div>
                 <div>
-                  <p className="text-2xl font-black text-slate-900 ">{stat.value}</p>
-                  <p className="text-xs font-bold text-slate-500 (--text-secondary)] uppercase tracking-wider">{stat.label}</p>
+                  <p className="text-2xl font-black text-slate-900 dark:text-slate-100">{stat.value}</p>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</p>
                 </div>
               </div>
             ))}

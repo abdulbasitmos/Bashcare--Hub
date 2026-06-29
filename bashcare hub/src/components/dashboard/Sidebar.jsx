@@ -107,18 +107,20 @@ const Sidebar = ({ role, onLogout }) => {
         />
       )}
 
-      <aside className={`fixed inset-y-0 left-0 z-50 md:sticky md:top-0 w-64 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col h-screen border-r border-gray-200 dark:border-slate-800 transition-all duration-300 ease-in-out ${
+      <aside className={`fixed inset-y-0 left-0 z-50 md:sticky md:top-0 w-64 bg-[#2563EB] dark:bg-slate-900 text-white flex flex-col h-screen border-r border-blue-500/10 dark:border-slate-800/30 transition-all duration-300 ease-in-out ${
         isOpenMobile ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-      } shadow-lg md:shadow-[4px_0_24px_rgba(0,0,0,0.02)]`}>
+      } shadow-[4px_0_24px_rgba(59,130,246,0.05)]`}>
       <div className="p-5">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <LogoIcon className="h-8 w-8" animated={true} />
+          <div className="text-white brightness-0 invert">
+            <LogoIcon className="h-8 w-8" animated={true} />
+          </div>
           <span className="text-base font-black tracking-tight transition-transform duration-300 group-hover:scale-102">
-            <span className="text-[#2563EB]">Bashcare</span>
-            <span className="text-slate-800 dark:text-slate-200">Hub</span>
+            <span className="text-white">Bashcare</span>
+            <span className="text-white/80">Hub</span>
           </span>
         </Link>
-        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2 pl-10.5">
+        <p className="text-[9px] font-bold text-white/50 uppercase tracking-widest mt-2 pl-10.5">
           {role} portal
         </p>
       </div>
@@ -133,11 +135,11 @@ const Sidebar = ({ role, onLogout }) => {
               onClick={() => setIsOpenMobile(false)}
               className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-200 group ${
                 isActive 
-                  ? 'bg-blue-50/50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-450 shadow-sm hover:shadow-md transition-shadow font-semibold' 
-                  : 'text-slate-500 hover:bg-white dark:hover:bg-slate-800 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 font-medium'
+                  ? 'bg-white/15 text-white shadow-sm hover:shadow-md transition-shadow font-semibold' 
+                  : 'text-white/70 hover:bg-white/5 hover:text-white font-medium'
               }`}
             >
-              <span className={`${isActive ? 'text-[#2563EB]' : 'text-slate-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors'}`}>
+              <span className={`transition-colors ${isActive ? 'text-white' : 'text-white/50 group-hover:text-white'}`}>
                 {item.icon}
               </span>
               <span className="text-xs">{item.name}</span>
@@ -145,12 +147,11 @@ const Sidebar = ({ role, onLogout }) => {
           );
         })}
       </nav>
-
-      <div className="p-3 border-t border-gray-200 dark:border-slate-800 space-y-1">
+      <div className="p-3 border-t border-blue-500/20 dark:border-slate-800 space-y-1">
         <Link
           to="/"
           onClick={() => setIsOpenMobile(false)}
-          className="flex items-center gap-2.5 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 rounded-xl transition-all"
+          className="flex items-center gap-2.5 px-3 py-2.5 text-white/70 hover:bg-white/5 hover:text-white rounded-xl transition-all"
         >
           <Home size={18} />
           <span className="font-medium text-xs">Back to Website</span>
@@ -158,7 +159,7 @@ const Sidebar = ({ role, onLogout }) => {
         <Link
           to={`/dashboard/${role}/settings`}
           onClick={() => setIsOpenMobile(false)}
-          className="flex items-center gap-2.5 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 rounded-xl transition-all"
+          className="flex items-center gap-2.5 px-3 py-2.5 text-white/70 hover:bg-white/5 hover:text-white rounded-xl transition-all"
         >
           <Settings size={18} />
           <span className="font-medium text-xs">{t('settings')}</span>
@@ -168,7 +169,7 @@ const Sidebar = ({ role, onLogout }) => {
             setIsOpenMobile(false);
             onLogout();
           }}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-[#EF4444] hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all border-none bg-transparent cursor-pointer"
+          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-red-200 hover:bg-white/5 hover:text-red-100 rounded-xl transition-all border-none bg-transparent cursor-pointer"
         >
           <LogOut size={18} />
           <span className="font-medium text-xs">{t('logout')}</span>

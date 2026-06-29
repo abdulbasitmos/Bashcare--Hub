@@ -40,7 +40,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden bg-white  transition-colors">
+    <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-24 overflow-hidden transition-colors" style={{ background: 'linear-gradient(135deg, #ecfeff 0%, #ffffff 40%, #f0fdfa 100%)' }}>
       {/* Dynamic Background Elements */}
       <motion.div 
         className="absolute top-0 right-0 w-[600px] h-[400px] md:h-[500px] bg-blue-100/60  rounded-full blur-[150px] opacity-60"
@@ -193,6 +193,59 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
+
+        {/* Glassmorphism Booking Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 lg:mt-16 relative z-10"
+        >
+          <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg border border-white/30 p-4 md:p-6 max-w-4xl mx-auto flex flex-wrap items-center gap-4">
+            {/* Department */}
+            <div className="flex-1 min-w-[160px]">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Department</label>
+              <select className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer appearance-none">
+                <option value="all">All</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="neurology">Neurology</option>
+                <option value="pediatrics">Pediatrics</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="dental">Dental</option>
+                <option value="general">General</option>
+              </select>
+            </div>
+
+            {/* Doctor */}
+            <div className="flex-1 min-w-[160px]">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Doctor</label>
+              <select className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer appearance-none">
+                <option value="all">All Doctors</option>
+              </select>
+            </div>
+
+            {/* Date */}
+            <div className="flex-1 min-w-[160px]">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Date</label>
+              <input
+                type="date"
+                className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer"
+              />
+            </div>
+
+            {/* Book Now Button */}
+            <div className="flex-shrink-0 w-full sm:w-auto mt-2 sm:mt-0 sm:self-end">
+              <motion.button
+                onClick={() => navigate('/doctors')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto bg-[var(--color-primary)] text-white px-8 py-3 rounded-xl font-bold hover:opacity-90 cursor-pointer transition-all shadow-md"
+              >
+                Book Now
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
     </section>
   );
 };

@@ -41,7 +41,7 @@ import { GlobalSettingsProvider } from './context/GlobalSettingsContext';
 import LandingV2 from './pages/LandingV2';
 
 const Home = () => (
-  <div className="min-h-screen bg-[var(--bg-primary)]">
+  <div className="min-h-screen medical-gradient-bg">
     <Navbar />
     <main>
       <Hero />

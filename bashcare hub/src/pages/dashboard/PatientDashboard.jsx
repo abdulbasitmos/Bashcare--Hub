@@ -21,7 +21,7 @@ const PatientDashboard = ({ user, logout }) => {
   const location = useLocation();
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] dark:bg-slate-950 transition-colors">
+    <div className="flex min-h-screen medical-gradient-bg dark:bg-slate-950 transition-colors">
       <Sidebar role="patient" onLogout={logout} />
       
       <div className="flex-grow flex flex-col min-w-0">

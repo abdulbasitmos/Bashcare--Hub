@@ -34,9 +34,64 @@ const Features = () => {
     },
   ];
 
+  const departments = [
+    { name: 'Emergency Care', emoji: '🚑' },
+    { name: 'Pediatric Dept', emoji: '🧸' },
+    { name: 'Cardiology', emoji: '❤️' },
+    { name: 'Neurology', emoji: '🧠' },
+    { name: 'Orthopedics', emoji: '🦴' },
+    { name: 'General Medicine', emoji: '🩺' },
+  ];
+
   return (
-    <section id="services" className="py-12 bg-[var(--bg-primary)] overflow-hidden">
+    <section
+      id="services"
+      className="py-12 overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0fdfa 50%, #ecfeff 100%)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ── Our Departments ── */}
+        <div className="text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)]"
+          >
+            Our Departments
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 max-w-2xl mx-auto text-xl text-[var(--text-secondary)]"
+          >
+            Specialized care across every discipline — find the right department for your needs.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
+          {departments.map((dept, i) => (
+            <motion.div
+              key={dept.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              onClick={() => navigate('/doctors')}
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-sm hover:shadow-lg transition-all cursor-pointer border border-gray-100/50"
+            >
+              <span className="text-4xl block mb-3">{dept.emoji}</span>
+              <span className="text-sm font-semibold text-[var(--text-primary)]">{dept.name}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── Divider ── */}
+        <div className="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 mb-20" />
+
+        {/* ── Existing Premium Healthcare Experience ── */}
         <div className="text-center mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
