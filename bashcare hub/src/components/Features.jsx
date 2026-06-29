@@ -46,8 +46,7 @@ const Features = () => {
   return (
     <section
       id="services"
-      className="py-12 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0fdfa 50%, #ecfeff 100%)' }}
+      className="py-12 overflow-hidden features-gradient"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Our Departments ── */}

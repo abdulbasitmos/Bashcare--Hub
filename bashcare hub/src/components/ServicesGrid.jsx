@@ -22,7 +22,7 @@ const ServicesGrid = () => {
     : services.filter(s => s.category === activeCategory);
 
   return (
-    <section className="py-12 overflow-hidden" style={{ background: 'linear-gradient(180deg, #ecfeff 0%, #ffffff 50%, #f0fdfa 100%)' }}>
+    <section className="py-12 overflow-hidden services-gradient">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

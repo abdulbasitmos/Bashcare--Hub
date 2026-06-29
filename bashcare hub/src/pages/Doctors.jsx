@@ -108,7 +108,7 @@ const Doctors = () => {
   const specialtyParam = searchParams.get('specialty') || 'All';
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(searchParams.get('search') || searchParams.get('q') || '');
   const [activeSpecialty, setActiveSpecialty] = useState(specialtyParam);
 
   useEffect(() => {

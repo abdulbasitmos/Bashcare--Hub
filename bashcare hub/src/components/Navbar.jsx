@@ -65,16 +65,12 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'top-2 md:top-4 px-4 sm:px-6 lg:px-8' 
-          : 'top-0 px-0'
-      }`}
+      className="fixed left-0 right-0 top-0 z-50 transition-all duration-350 ease-in-out px-0"
     >
       <div 
-        className={`max-w-7xl mx-auto transition-all duration-500 ${
+        className={`w-full transition-all duration-350 ${
           isScrolled 
-            ? 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[24px] border border-white/20 dark:border-slate-700/30 px-4 sm:px-6 lg:px-8' 
+            ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-md border-b border-slate-150 dark:border-slate-800/80 px-4 sm:px-6 lg:px-8' 
             : 'bg-transparent border-b border-transparent px-4 sm:px-6 lg:px-8'
         }`}
       >
