@@ -396,7 +396,19 @@ const addChatMessage = async (req, res) => {
     });
     
     if (!chat) {
-      chat = new Chat({ participants: [userId, chatId], messages: [] });
+      // If no exact match, check if the doctor (or user) already started a chat with themselves
+      if (userId !== chatId) {
+         chat = await Chat.findOne({ participants: chatId });
+         if (chat && !chat.participants.includes(userId)) {
+           chat.participants.push(userId);
+         }
+      }
+      
+      if (!chat) {
+        // If still no chat, create a new one. If userId === chatId, it will just be [userId].
+        const newParticipants = userId === chatId ? [userId] : [userId, chatId];
+        chat = new Chat({ participants: newParticipants, messages: [] });
+      }
     }
     
     const newMessage = {

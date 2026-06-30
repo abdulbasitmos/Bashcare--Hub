@@ -143,7 +143,7 @@ const MediaCallModal = ({ type, isOpen, onClose, doctorName, onCallCompleted }) 
                     />
                   )}
                   <div className="absolute top-8 right-8 w-40 aspect-video bg-slate-700 rounded-2xl border-2 border-white/20 overflow-hidden flex flex-col items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-blue-50/500 font-bold text-white flex items-center justify-center text-xs mb-1">
+                    <div className="w-12 h-12 rounded-full bg-blue-50/50 font-bold text-white flex items-center justify-center text-xs mb-1">
                       {doctorName ? doctorName.split(' ').map(n => n[0]).join('') : 'DR'}
                     </div>
                     <p className="text-[10px] text-white/70 font-semibold">{doctorName}</p>
@@ -200,6 +200,7 @@ const VerificationHub = ({
   setInputText, 
   onSendMessage,
   onSendSpecialMessage,
+  onDirectSendSpecial,
   callModal,
   setCallModal,
   // Voice note params
@@ -218,7 +219,7 @@ const VerificationHub = ({
       type={callModal.type} 
       doctorName={selectedDoctor?.name}
       onClose={() => setCallModal({ ...callModal, isOpen: false })}
-      onCallCompleted={(type, duration) => onSendSpecialMessage(type, '', 'Call.log', 0, duration)} 
+      onCallCompleted={(type, duration) => onDirectSendSpecial(type, '', 'Call.log', 0, duration)} 
     />
     
     <div className="w-1/3 flex flex-col bg-[var(--bg-secondary)]  rounded-[24px] shadow-sm hover:shadow-md transition-shadow fade-in hover:shadow-md transition-all duration-300 border border-[var(--border-primary)]  overflow-hidden transition-colors">
@@ -955,6 +956,7 @@ const OfficerDashboard = ({ user, logout }) => {
                 setInputText={setInputText} 
                 onSendMessage={handleSendMessage}
                 onSendSpecialMessage={handleSendSpecialMessage}
+                onDirectSendSpecial={handleDirectSendSpecial}
                 callModal={callModal}
                 setCallModal={setCallModal}
                 // Voice note hooks
