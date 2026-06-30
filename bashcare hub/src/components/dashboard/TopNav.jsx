@@ -208,14 +208,21 @@ const TopNav = ({ userName = "User", role = "patient" }) => {
             <button className="p-3 text-slate-500 dark:text-slate-400 hover:bg-[#f8fafc] dark:hover:bg-slate-800 rounded-xl transition-colors">
               <Globe size={22} />
             </button>
-            <div className="absolute right-0 top-full mt-2 w-32 bg-[var(--bg-secondary)] rounded-2xl shadow-xl border border-[var(--border-primary)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
-              {['en', 'fr', 'es'].map(lang => (
+            <div className="absolute right-0 top-full mt-2 w-36 bg-[var(--bg-secondary)] rounded-2xl shadow-xl border border-[var(--border-primary)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
+              {[
+                { code: 'en', label: 'English' },
+                { code: 'fr', label: 'Français' },
+                { code: 'es', label: 'Español' },
+                { code: 'yo', label: 'Yorùbá' },
+                { code: 'de', label: 'Deutsch' },
+                { code: 'pt', label: 'Português' },
+              ].map(lang => (
                 <button 
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`w-full px-4 py-3 text-left text-xs font-bold uppercase hover:bg-white dark:hover:bg-slate-700 transition-colors ${language === lang ? 'text-[var(--color-primary)]' : 'text-slate-500 dark:text-slate-400'}`}
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={`w-full px-4 py-3 text-left text-xs font-bold hover:bg-white dark:hover:bg-slate-750 transition-colors ${language === lang.code ? 'text-[var(--color-primary)] bg-slate-50/50' : 'text-slate-500 dark:text-slate-400'}`}
                 >
-                  {lang === 'en' ? 'English' : lang === 'fr' ? 'Français' : 'Español'}
+                  {lang.label}
                 </button>
               ))}
             </div>

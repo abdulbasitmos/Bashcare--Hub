@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const MembershipPlans = () => {
   const navigate = useNavigate();
+  const { t } = useGlobalSettings();
   const plans = [
     { 
       name: 'Basic Care', 
@@ -40,7 +42,7 @@ const MembershipPlans = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-4"
           >
-            Tailored Care Plans
+            {t('Tailored Care Plans')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -49,7 +51,7 @@ const MembershipPlans = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto"
           >
-            Choose a plan that fits your lifestyle and health needs. From basic monitoring to elite family protection.
+            {t('Choose a plan that fits your lifestyle and health needs. From basic monitoring to elite family protection.')}
           </motion.p>
         </div>
 
@@ -69,11 +71,11 @@ const MembershipPlans = () => {
             >
               {plan.highlight && (
                 <div className="absolute top-0 right-10 -translate-y-1/2 bg-yellow-400 text-[var(--text-primary)] text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest">
-                  Most Popular
+                  {t('Most Popular')}
                 </div>
               )}
-              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-              <p className={`text-sm mb-6 ${plan.highlight ? 'text-blue-100' : 'text-[var(--text-secondary)]'}`}>{plan.description}</p>
+              <h3 className="text-2xl font-bold mb-2">{t(plan.name)}</h3>
+              <p className={`text-sm mb-6 ${plan.highlight ? 'text-blue-100' : 'text-[var(--text-secondary)]'}`}>{t(plan.description)}</p>
               <div className="flex items-baseline gap-1 mb-8">
                 <span className="text-3xl md:text-4xl font-black">${plan.price}</span>
                 <span className={`text-sm font-medium ${plan.highlight ? 'text-blue-200' : 'text-[var(--text-secondary)]'}`}>/month</span>
@@ -84,7 +86,7 @@ const MembershipPlans = () => {
                     <svg className={`w-5 h-5 ${plan.highlight ? 'text-blue-300' : 'text-[var(--color-primary)]'}`} fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    {f}
+                    {t(f)}
                   </li>
                 ))}
               </ul>
@@ -96,7 +98,7 @@ const MembershipPlans = () => {
                   : 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary)] hover:opacity-90'
                 }`}
               >
-                {plan.button}
+                {t(plan.button)}
               </button>
             </motion.div>
           ))}

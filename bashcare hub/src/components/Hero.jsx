@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Star, Zap, Activity, Heart, Search } from 'lucide-react';
 import { db } from '../utils/db';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const doctorImages = [
   "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&q=80&w=1200",
@@ -23,6 +24,7 @@ const doctorImages = [
 
 const Hero = () => {
   const navigate = useNavigate();
+  const { t } = useGlobalSettings();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [heroSearch, setHeroSearch] = useState('');
   const [doctorsList, setDoctorsList] = useState([]);
@@ -113,18 +115,18 @@ const Hero = () => {
               className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50  text-blue-600  text-sm font-semibold mb-6 border border-blue-100 "
             >
               <span className="flex h-2.5 w-2.5 rounded-full bg-blue-500  mr-2 animate-pulse"></span>
-              Now Accepting Online Consultations
+              {t('Now Accepting Online Consultations')}
             </motion.div>
             
             <h1 className="text-3xl md:text-4xl tracking-tight font-extrabold text-[#0f172a] sm:text-3xl md:text-4xl md:text-3xl md:text-4xl lg:text-5xl leading-tight">
-              <span className="block">Compassionate Care</span>
+              <span className="block">{t('Compassionate Care')}</span>
               <span className="block text-[var(--color-primary)] relative">
-                for a Better Life
+                {t('for a Better Life')}
               </span>
             </h1>
             
             <p className="mt-6 text-base text-[#64748b] sm:text-xl lg:text-lg xl:text-xl leading-relaxed">
-              Bashcare Hub provides top-tier medical services with a team of experienced professionals. We are committed to your health and well-being.
+              {t('Bashcare Hub provides top-tier medical services with a team of experienced professionals. We are committed to your health and well-being.')}
             </p>
             
             {/* Quick Diagnostic / Specialist Search Bar */}
@@ -137,7 +139,7 @@ const Hero = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full blur opacity-15 group-hover:opacity-30 transition duration-300"></div>
                 <input 
                   type="text" 
-                  placeholder="Search specialties, doctors, or symptoms..." 
+                  placeholder={t('Search specialties, doctors, or symptoms...')} 
                   value={heroSearch}
                   onChange={(e) => {
                     setHeroSearch(e.target.value);
@@ -185,14 +187,14 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center px-6 py-3 font-bold text-white bg-[var(--color-primary)] rounded-full shadow-lg hover:opacity-95 cursor-pointer"
               >
-                Explore Services
+                {t('Explore Services')}
               </motion.button>
               <motion.button 
                 onClick={() => navigate('/doctors')}
                 whileHover={{ scale: 1.05, backgroundColor: "var(--border-primary)" }}
                 className="inline-flex items-center justify-center px-6 py-3 font-bold text-[#64748b] border border-[var(--border-primary)] rounded-full bg-[#ffffff] cursor-pointer transition-colors"
               >
-                Our Specialists
+                {t('Our Specialists')}
               </motion.button>
             </div>
           </motion.div>
@@ -217,7 +219,7 @@ const Hero = () => {
               />
             </AnimatePresence>
 
-            {/* Floating Card 1: Top Left (Rating) */}
+             {/* Floating Card 1: Top Left (Rating) */}
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -227,11 +229,11 @@ const Hero = () => {
                 <Star className="w-6 h-6 fill-current" />
               </div>
               <div>
-                <p className="text-[10px] text-gray-500  font-bold uppercase tracking-wider">Top Rated Care</p>
+                <p className="text-[10px] text-gray-500  font-bold uppercase tracking-wider">{t('Top Rated Care')}</p>
                 <p className="text-sm font-bold text-gray-800 ">4.9/5 (18k+ reviews)</p>
               </div>
             </motion.div>
-
+ 
             {/* Floating Card 2: Bottom Right (Online status) */}
             <motion.div
               animate={{ y: [0, 12, 0] }}
@@ -243,11 +245,11 @@ const Hero = () => {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </div>
               <div>
-                <p className="text-[10px] text-gray-500  font-bold uppercase tracking-wider">Consultations</p>
-                <p className="text-sm font-bold text-gray-800 ">98 Doctors Online</p>
+                <p className="text-[10px] text-gray-500  font-bold uppercase tracking-wider">{t('consultations')}</p>
+                <p className="text-sm font-bold text-gray-800 ">{t('98 Doctors Online')}</p>
               </div>
             </motion.div>
-
+ 
             {/* Floating Card 3: Bottom Left (AI assistance status) */}
             <motion.div
               animate={{ x: [0, 10, 0] }}
@@ -257,12 +259,12 @@ const Hero = () => {
               <div className="bg-blue-50  p-2 rounded-xl text-blue-500 ">
                 <Zap className="w-5 h-5 fill-current" />
               </div>
-              <p className="text-xs font-bold text-gray-800 ">AI Diagnostic Assistant Live</p>
+              <p className="text-xs font-bold text-gray-800 ">{t('AI Diagnostic Assistant Live')}</p>
             </motion.div>
           </motion.div>
         </div>
       </div>
-
+ 
         {/* Glassmorphism Booking Bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -273,35 +275,35 @@ const Hero = () => {
           <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg border border-white/30 p-4 md:p-6 max-w-4xl mx-auto flex flex-wrap items-center gap-4">
             {/* Department */}
             <div className="flex-1 min-w-[160px]">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Department</label>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">{t('Department')}</label>
               <select className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer appearance-none">
-                <option value="all">All</option>
-                <option value="cardiology">Cardiology</option>
-                <option value="neurology">Neurology</option>
-                <option value="pediatrics">Pediatrics</option>
-                <option value="orthopedics">Orthopedics</option>
+                <option value="all">{t('All')}</option>
+                <option value="cardiology">{t('Cardiology')}</option>
+                <option value="neurology">{t('Neurology')}</option>
+                <option value="pediatrics">{t('Pediatrics')}</option>
+                <option value="orthopedics">{t('Orthopedics')}</option>
                 <option value="dental">Dental</option>
-                <option value="general">General</option>
+                <option value="general">{t('General Medicine')}</option>
               </select>
             </div>
-
+ 
             {/* Doctor */}
             <div className="flex-1 min-w-[160px]">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Doctor</label>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">{t('Doctor')}</label>
               <select className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer appearance-none">
-                <option value="all">All Doctors</option>
+                <option value="all">{t('All Doctors')}</option>
               </select>
             </div>
-
+ 
             {/* Date */}
             <div className="flex-1 min-w-[160px]">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Date</label>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">{t('Date')}</label>
               <input
                 type="date"
                 className="w-full bg-white/60 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all cursor-pointer"
               />
             </div>
-
+ 
             {/* Book Now Button */}
             <div className="flex-shrink-0 w-full sm:w-auto mt-2 sm:mt-0 sm:self-end">
               <motion.button
@@ -310,7 +312,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto bg-[var(--color-primary)] text-white px-8 py-3 rounded-xl font-bold hover:opacity-90 cursor-pointer transition-all shadow-md"
               >
-                Book Now
+                {t('Book Now')}
               </motion.button>
             </div>
           </div>

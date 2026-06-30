@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const FAQ = () => {
+  const { t } = useGlobalSettings();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
@@ -37,7 +39,7 @@ const FAQ = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-4"
           >
-            Frequently Asked Questions
+            {t('Frequently Asked Questions')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -46,7 +48,7 @@ const FAQ = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-[var(--text-secondary)]"
           >
-            Quick answers to common questions about our world-class services.
+            {t('Quick answers to common questions about our world-class services.')}
           </motion.p>
         </div>
         <div className="space-y-4">
@@ -63,7 +65,7 @@ const FAQ = () => {
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-[var(--bg-primary)]/50 transition-colors"
               >
-                <h3 className="text-lg font-bold text-[var(--text-primary)]">{faq.q}</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)]">{t(faq.q)}</h3>
                 <motion.span 
                   animate={{ rotate: activeIndex === index ? 180 : 0 }}
                   className="shrink-0 ml-4 p-1 text-[var(--color-primary)]"
@@ -82,7 +84,7 @@ const FAQ = () => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <div className="px-6 pb-6 text-gray-600 leading-relaxed">
-                      {faq.a}
+                      {t(faq.a)}
                     </div>
                   </motion.div>
                 )}

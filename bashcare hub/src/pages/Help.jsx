@@ -5,8 +5,10 @@ import PageHeader from '../components/PageHeader';
 import { ChevronDown, MessageCircle, Mail, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const Help = () => {
+  const { t } = useGlobalSettings();
   const [openIndex, setOpenIndex] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,24 +27,24 @@ const Help = () => {
 
   const faqs = [
     {
-      question: 'How do I book an appointment?',
-      answer: 'You can book an appointment by signing in as a Patient and navigating to the "Book Appointment" section. Choose your specialty, doctor, and preferred time slot.',
+      question: t('How do I book an appointment?'),
+      answer: t('You can book an appointment by signing in as a Patient and navigating to the "Book Appointment" section. Choose your specialty, doctor, and preferred time slot.'),
     },
     {
-      question: 'Is my medical data secure?',
-      answer: 'Yes, we use industry-standard encryption and follow strict privacy protocols to ensure your health records are only accessible to you and your authorized healthcare providers.',
+      question: t('Is my medical data secure?'),
+      answer: t('Yes, we use industry-standard encryption and follow strict privacy protocols to ensure your health records are only accessible to you and your authorized healthcare providers.'),
     },
     {
-      question: 'How can I verify my doctor credentials?',
-      answer: 'All doctors on our platform go through a rigorous verification process by our dedicated Verification Officers before they can offer consultations.',
+      question: t('How can I verify my doctor credentials?'),
+      answer: t('All doctors on our platform go through a rigorous verification process by our dedicated Verification Officers before they can offer consultations.'),
     },
     {
-      question: 'Can I manage multiple family members from one account?',
-      answer: 'Currently, each account is for an individual. However, we are working on a "Family Plan" feature to allow managed care for dependents.',
+      question: t('Can I manage multiple family members from one account?'),
+      answer: t('Currently, each account is for an individual. However, we are working on a "Family Plan" feature to allow managed care for dependents.'),
     },
     {
-      question: 'What should I do in case of an emergency?',
-      answer: 'Bashcare Hub is for non-emergency consultations. In case of a medical emergency, please call your local emergency services (e.g., 911) or go to the nearest hospital.',
+      question: t('What should I do in case of an emergency?'),
+      answer: t('Bashcare Hub is for non-emergency consultations. In case of a medical emergency, please call your local emergency services (e.g., 911) or go to the nearest hospital.'),
     },
   ];
 
@@ -71,9 +73,9 @@ const Help = () => {
         
         <div className="relative z-10">
           <PageHeader 
-            title="Help & Support" 
-            subtitle="Find answers to your questions or get in touch with our team."
-            breadcrumb="Help"
+            title={t('Help & Support')} 
+            subtitle={t('Find answers to your questions or get in touch with our team.')}
+            breadcrumb={t('help')}
             videoUrl="/videos/services_bg.mp4"
           />
         </div>
@@ -83,7 +85,7 @@ const Help = () => {
         <div className="lg:grid lg:grid-cols-3 gap-16">
           {/* FAQ Section */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">{t('Frequently Asked Questions')}</h2>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <div key={index} className="border border-[var(--border-primary)] rounded-2xl overflow-hidden bg-[var(--bg-primary)]">
@@ -107,8 +109,8 @@ const Help = () => {
           {/* Contact Support Sidebar */}
           <div className="mt-16 lg:mt-0">
             <div className="relative p-8 rounded-[2.5rem] border border-blue-100 sticky top-32 overflow-hidden shadow-2xl bg-gradient-to-br from-blue-600/90 to-indigo-900/90 backdrop-blur-md">
-              <h3 className="text-2xl font-bold text-white mb-6">Need more help?</h3>
-              <p className="text-blue-100 mb-8">Our support team is available 24/7 to assist you with any technical or medical inquiries.</p>
+              <h3 className="text-2xl font-bold text-white mb-6">{t('Need more help?')}</h3>
+              <p className="text-blue-100 mb-8">{t('Our support team is available 24/7 to assist you with any technical or medical inquiries.')}</p>
               
               <div className="space-y-6">
                 <a href="#" className="flex items-center gap-4 p-4 bg-[var(--bg-secondary)]/20 backdrop-blur-md text-white rounded-2xl shadow-sm hover:bg-[var(--bg-secondary)]/30 transition-all group border border-white/20">
@@ -116,8 +118,8 @@ const Help = () => {
                     <MessageCircle size={24} />
                   </div>
                   <div>
-                    <p className="font-bold">Live Chat</p>
-                    <p className="text-sm text-blue-100">Average response: 2 mins</p>
+                    <p className="font-bold">{t('Live Chat')}</p>
+                    <p className="text-sm text-blue-100">{t('Average response: 2 mins')}</p>
                   </div>
                 </a>
 
@@ -126,7 +128,7 @@ const Help = () => {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <p className="font-bold">Email Us</p>
+                    <p className="font-bold">{t('Email Us')}</p>
                     <p className="text-sm text-blue-100">support@bashcarehub.com</p>
                   </div>
                 </a>
@@ -136,7 +138,7 @@ const Help = () => {
                     <Phone size={24} />
                   </div>
                   <div>
-                    <p className="font-bold">Call Support</p>
+                    <p className="font-bold">{t('Call Support')}</p>
                     <p className="text-sm text-blue-100">+1 (555) 000-0000</p>
                   </div>
                 </a>

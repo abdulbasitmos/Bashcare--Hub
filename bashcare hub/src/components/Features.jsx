@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const Features = () => {
   const navigate = useNavigate();
+  const { t } = useGlobalSettings();
   const features = [
     {
       title: 'World-Class Medical Expertise',
@@ -57,7 +59,7 @@ const Features = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)]"
           >
-            Our Departments
+            {t('Our Departments')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +68,7 @@ const Features = () => {
             transition={{ delay: 0.2 }}
             className="mt-4 max-w-2xl mx-auto text-xl text-[var(--text-secondary)]"
           >
-            Specialized care across every discipline — find the right department for your needs.
+            {t('Specialized care across every discipline — find the right department for your needs.')}
           </motion.p>
         </div>
 
@@ -82,7 +84,7 @@ const Features = () => {
               className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-sm hover:shadow-lg transition-all cursor-pointer border border-gray-100/50"
             >
               <span className="text-4xl block mb-3">{dept.emoji}</span>
-              <span className="text-sm font-semibold text-[var(--text-primary)]">{dept.name}</span>
+              <span className="text-sm font-semibold text-[var(--text-primary)]">{t(dept.name)}</span>
             </motion.div>
           ))}
         </div>
@@ -98,7 +100,7 @@ const Features = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] sm:text-3xl md:text-4xl"
           >
-            Our Premium Healthcare Experience
+            {t('Our Premium Healthcare Experience')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -107,7 +109,7 @@ const Features = () => {
             transition={{ delay: 0.2 }}
             className="mt-4 max-w-2xl mx-auto text-xl text-[var(--text-secondary)]"
           >
-            Everything you need for a healthier life, delivered with precision and compassion.
+            {t('Everything you need for a healthier life, delivered with precision and compassion.')}
           </motion.p>
         </div>
 
@@ -126,7 +128,7 @@ const Features = () => {
                   <div className={`absolute -inset-4 ${feature.color} rounded-[3rem] blur-2xl opacity-30 group-hover:opacity-50 transition duration-500`}></div>
                   <img 
                     src={feature.image} 
-                    alt={feature.title} 
+                    alt={t(feature.title)} 
                     className="relative rounded-[2.5rem] shadow-2xl w-full h-[400px] object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
@@ -135,15 +137,15 @@ const Features = () => {
                 <div className={`w-16 h-16 ${feature.color} rounded-2xl flex items-center justify-center text-3xl mb-6`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-3xl font-bold text-[var(--text-primary)]">{feature.title}</h3>
+                <h3 className="text-3xl font-bold text-[var(--text-primary)]">{t(feature.title)}</h3>
                 <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
-                  {feature.description}
+                  {t(feature.description)}
                 </p>
                 <button 
                   onClick={() => navigate('/get-started')}
                   className="text-[var(--color-primary)] font-bold flex items-center gap-2 hover:gap-3 transition-all group cursor-pointer"
                 >
-                  Learn More 
+                  {t('Learn More')} 
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>

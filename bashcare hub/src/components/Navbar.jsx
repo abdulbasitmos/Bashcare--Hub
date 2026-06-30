@@ -151,6 +151,9 @@ const Navbar = () => {
                   en: { flag: '🇺🇸', label: 'EN' },
                   fr: { flag: '🇫🇷', label: 'FR' },
                   es: { flag: '🇪🇸', label: 'ES' },
+                  yo: { flag: '🇳🇬', label: 'YO' },
+                  de: { flag: '🇩🇪', label: 'DE' },
+                  pt: { flag: '🇵🇹', label: 'PT' },
                 };
                 const current = langs[language] || langs.en;
                 return (
@@ -171,6 +174,9 @@ const Navbar = () => {
                           { code: 'en', flag: '🇺🇸', name: 'English', native: 'English' },
                           { code: 'fr', flag: '🇫🇷', name: 'French', native: 'Français' },
                           { code: 'es', flag: '🇪🇸', name: 'Spanish', native: 'Español' },
+                          { code: 'yo', flag: '🇳🇬', name: 'Yoruba', native: 'Yorùbá' },
+                          { code: 'de', flag: '🇩🇪', name: 'German', native: 'Deutsch' },
+                          { code: 'pt', flag: '🇵🇹', name: 'Portuguese', native: 'Português' },
                         ].map(lang => (
                           <button
                             key={lang.code}
@@ -485,7 +491,10 @@ const Navbar = () => {
                     {[
                       { code: 'en', flag: '🇺🇸', native: 'English', name: 'English' },
                       { code: 'fr', flag: '🇫🇷', native: 'Français', name: 'French' },
-                      { code: 'es', flag: '🇪🇸', native: 'Español', name: 'Spanish' }
+                      { code: 'es', flag: '🇪🇸', native: 'Español', name: 'Spanish' },
+                      { code: 'yo', flag: '🇳🇬', native: 'Yorùbá', name: 'Yoruba' },
+                      { code: 'de', flag: '🇩🇪', native: 'Deutsch', name: 'German' },
+                      { code: 'pt', flag: '🇵🇹', native: 'Português', name: 'Portuguese' }
                     ].map(lang => (
                       <button
                         key={lang.code}

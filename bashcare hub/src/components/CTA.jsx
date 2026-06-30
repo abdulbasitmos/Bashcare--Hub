@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const CTA = () => {
   const navigate = useNavigate();
+  const { t } = useGlobalSettings();
 
   return (
     <section className="py-12 bg-[var(--bg-secondary)] overflow-hidden">
@@ -19,7 +21,7 @@ const CTA = () => {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl md:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight"
             >
-              Your Journey to Better Health Starts Here
+              {t('Your Journey to Better Health Starts Here')}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -28,7 +30,7 @@ const CTA = () => {
               transition={{ delay: 0.2 }}
               className="text-xl text-blue-100 mb-10 leading-relaxed"
             >
-              Experience world-class healthcare tailored to your needs. Join Bashcare Hub today and get access to top specialists and seamless digital care.
+              {t('Experience world-class healthcare tailored to your needs. Join Bashcare Hub today and get access to top specialists and seamless digital care.')}
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -41,13 +43,13 @@ const CTA = () => {
                 onClick={() => navigate('/get-started')}
                 className="px-10 py-4 bg-[var(--bg-secondary)] text-[var(--color-primary)] rounded-full font-bold text-lg hover:bg-[var(--bg-primary)] transition-all transform hover:-translate-y-1 shadow-lg cursor-pointer"
               >
-                Book an Appointment
+                {t('Book Appointment')}
               </button>
               <button 
                 onClick={() => navigate('/doctors')}
                 className="px-10 py-4 bg-white/20 text-white border border-white/30 rounded-full font-bold text-lg hover:bg-white/30 transition-all transform hover:-translate-y-1 cursor-pointer"
               >
-                Consult a Specialist
+                {t('Consult a Specialist')}
               </button>
             </motion.div>
           </div>

@@ -135,10 +135,10 @@
 
 @layer utilities {
   .dash-card {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-md transition-all duration-300 relative overflow-hidden;
+    @apply bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/40 rounded-[28px] shadow-[0_8px_30px_rgba(0,0,0,0.015)] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 relative overflow-hidden;
   }
   .dash-card-hover {
-    @apply hover:-translate-y-1 hover:shadow-lg;
+    @apply hover:-translate-y-0.5 hover:shadow-xl;
   }
   .dash-icon-container {
     @apply w-12 h-12 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110;
@@ -337,4 +337,41 @@
 }
 .dark .services-gradient {
   background: linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%) !important;
+}
+
+/* Dashboard Card Premium Harmonization Override */
+.rounded-\[24px\] {
+  border-radius: 28px !important;
+}
+
+.bg-white.p-6.rounded-\[24px\],
+.bg-white.p-8.rounded-\[28px\],
+.bg-white.p-8.rounded-\[24px\],
+.bg-\[var\(--bg-secondary\)\].rounded-\[24px\],
+.bg-\[var\(--bg-secondary\)\].p-8.rounded-\[24px\],
+section.bg-\[var\(--bg-secondary\)\] {
+  border-radius: 28px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.015) !important;
+  border: 1px solid rgba(226, 232, 240, 0.65) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dark .bg-white.p-6.rounded-\[24px\],
+.dark .bg-white.p-8.rounded-\[28px\],
+.dark .bg-white.p-8.rounded-\[24px\],
+.dark .bg-\[var\(--bg-secondary\)\].rounded-\[24px\],
+.dark .bg-\[var\(--bg-secondary\)\].p-8.rounded-\[24px\],
+.dark section.bg-\[var\(--bg-secondary\)\] {
+  border-color: rgba(30, 41, 59, 0.5) !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-white.p-6.rounded-\[24px\]:hover,
+.bg-white.p-8.rounded-\[28px\]:hover,
+.bg-white.p-8.rounded-\[24px\]:hover,
+.bg-\[var\(--bg-secondary\)\].rounded-\[24px\]:hover,
+.bg-\[var\(--bg-secondary\)\].p-8.rounded-\[24px\]:hover,
+section.bg-\[var\(--bg-secondary\)\]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.025) !important;
+  transform: translateY(-2px) !important;
 }

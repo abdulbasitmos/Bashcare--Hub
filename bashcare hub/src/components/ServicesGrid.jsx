@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const services = [
   { id: 1, category: 'Cardiology', title: 'Heart Checkup', description: 'Comprehensive cardiac evaluation and diagnostic testing.', price: '$150', duration: '45 mins', image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=400' },
@@ -15,6 +16,7 @@ const services = [
 const categories = ['All', 'Cardiology', 'Neurology', 'Pediatrics', 'Orthopedics', 'Dental', 'General'];
 
 const ServicesGrid = () => {
+  const { t } = useGlobalSettings();
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredServices = activeCategory === 'All' 
@@ -30,9 +32,9 @@ const ServicesGrid = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">Our Specialized Services</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">{t('Our Specialized Services')}</h2>
           <p className="mt-4 text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
-            Experience modern, personalized medical care tailored to your needs.
+            {t('Experience modern, personalized medical care tailored to your needs.')}
           </p>
         </motion.div>
 
@@ -50,7 +52,7 @@ const ServicesGrid = () => {
                   : 'bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-primary)]'
               }`}
             >
-              {category}
+              {t(category)}
             </motion.button>
           ))}
         </div>
@@ -79,19 +81,19 @@ const ServicesGrid = () => {
                 <div className="p-8">
                   <div>
                     <span className="inline-block px-3 py-1 rounded-lg bg-[var(--bg-primary)] text-[var(--color-primary)] text-[10px] font-bold mb-4 uppercase tracking-wider">
-                      {service.category}
+                      {t(service.category)}
                     </span>
                     <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-3">
-                      {service.title}
+                      {t(service.title)}
                     </h3>
                     <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6">
-                      {service.description}
+                      {t(service.description)}
                     </p>
                   </div>
                   
                   <div className="flex items-center justify-between pt-6 border-t border-[var(--border-primary)]">
                     <p className="text-2xl font-black text-[var(--color-primary)]">{service.price}</p>
-                    <p className="text-xs font-bold text-[var(--text-secondary)]">{service.duration}</p>
+                    <p className="text-xs font-bold text-[var(--text-secondary)]">{t(service.duration)}</p>
                   </div>
                 </div>
               </motion.div>

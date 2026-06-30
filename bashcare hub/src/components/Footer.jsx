@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { LogoIcon } from './Logo';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const Facebook = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -19,6 +20,7 @@ const Linkedin = ({ size = 24 }) => (
 );
 
 const Footer = () => {
+  const { t } = useGlobalSettings();
   return (
     <footer className="bg-slate-900 dark:bg-slate-950 text-white pt-16 pb-8 transition-colors duration-300 border-t border-slate-800 dark:border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +34,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="mt-4 text-slate-400 leading-relaxed text-sm">
-              Providing excellence in medical care since 2024. We are committed to delivering the highest quality healthcare services to our community.
+              {t('Providing excellence in medical care since 2024. We are committed to delivering the highest quality healthcare services to our community.')}
             </p>
             <div className="mt-6 flex space-x-4">
               <a href="#" className="p-2 bg-slate-800 hover:bg-blue-600 rounded-lg hover:text-white transition-colors">
@@ -52,30 +54,30 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-6 text-white">{t('Quick Links')}</h3>
             <ul className="space-y-4">
-              <li><Link to="/about" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">About Us</Link></li>
-              <li><Link to="/get-started" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Get Started</Link></li>
-              <li><Link to="/contact" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Contact Us</Link></li>
-              <li><Link to="/help" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Help & FAQ</Link></li>
+              <li><Link to="/about" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('About Us')}</Link></li>
+              <li><Link to="/get-started" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Get Started')}</Link></li>
+              <li><Link to="/contact" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Contact Us')}</Link></li>
+              <li><Link to="/help" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Help & FAQ')}</Link></li>
             </ul>
           </div>
 
           {/* Specialties */}
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white">Specialties</h3>
+            <h3 className="text-lg font-bold mb-6 text-white">{t('Specialties')}</h3>
             <ul className="space-y-4">
-              <li><Link to="/doctors?specialty=Cardiology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Cardiology</Link></li>
-              <li><Link to="/doctors?specialty=Neurology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Neurology</Link></li>
-              <li><Link to="/doctors?specialty=Pediatrics" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Pediatrics</Link></li>
-              <li><Link to="/doctors?specialty=Orthopedics" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Orthopedics</Link></li>
-              <li><Link to="/doctors?specialty=Dermatology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">Dermatology</Link></li>
+              <li><Link to="/doctors?specialty=Cardiology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Cardiology')}</Link></li>
+              <li><Link to="/doctors?specialty=Neurology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Neurology')}</Link></li>
+              <li><Link to="/doctors?specialty=Pediatrics" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Pediatrics')}</Link></li>
+              <li><Link to="/doctors?specialty=Orthopedics" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Orthopedics')}</Link></li>
+              <li><Link to="/doctors?specialty=Dermatology" className="text-slate-400 hover:text-blue-400 dark:hover:text-teal-400 transition-colors text-sm">{t('Dermatology')}</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white">Contact Us</h3>
+            <h3 className="text-lg font-bold mb-6 text-white">{t('Contact Us')}</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin size={20} className="text-blue-400 mt-1" />
@@ -95,7 +97,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-slate-800 text-center">
           <p className="text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} Bashcare Hub. All rights reserved.
+            &copy; {new Date().getFullYear()} Bashcare Hub. {t('All rights reserved.')}
           </p>
         </div>
       </div>

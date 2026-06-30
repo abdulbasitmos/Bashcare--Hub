@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const WhyChooseUs = () => {
+  const { t } = useGlobalSettings();
   const reasons = [
     {
       title: 'Patient-Centric Approach',
@@ -38,7 +40,7 @@ const WhyChooseUs = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-4"
           >
-            Why Choose Bashcare Hub?
+            {t('Why Choose Bashcare Hub?')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -47,7 +49,7 @@ const WhyChooseUs = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto"
           >
-            We combine medical excellence with technological innovation to provide a healthcare experience that is truly modern and compassionate.
+            {t('We combine medical excellence with technological innovation to provide a healthcare experience that is truly modern and compassionate.')}
           </motion.p>
         </div>
 
@@ -62,13 +64,13 @@ const WhyChooseUs = () => {
               className="flex flex-col lg:flex-row gap-8 items-center group"
             >
               <div className="w-full lg:w-1/2 overflow-hidden rounded-[2.5rem] shadow-xl transform group-hover:scale-[1.02] transition-transform duration-500">
-                <img src={reason.image} alt={reason.title} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={reason.image} alt={t(reason.title)} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
               </div>
               <div className="w-full lg:w-1/2 space-y-4">
                 <div className="text-3xl md:text-4xl mb-2">{reason.icon}</div>
-                <h3 className="text-2xl font-bold text-[var(--text-primary)]">{reason.title}</h3>
+                <h3 className="text-2xl font-bold text-[var(--text-primary)]">{t(reason.title)}</h3>
                 <p className="text-[var(--text-secondary)] leading-relaxed">
-                  {reason.description}
+                  {t(reason.description)}
                 </p>
               </div>
             </motion.div>

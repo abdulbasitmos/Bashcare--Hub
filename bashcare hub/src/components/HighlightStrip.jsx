@@ -1,3 +1,4 @@
+import { useGlobalSettings } from '../context/GlobalSettingsContext';
 
 const ICONS = [
   // Stethoscope
@@ -31,6 +32,7 @@ const LABELS = [
 ];
 
 const HighlightStrip = () => {
+  const { t } = useGlobalSettings();
   const highlights = LABELS.map((label, i) => ({
     title: label,
     icon: ICONS[i % ICONS.length],
@@ -47,7 +49,7 @@ const HighlightStrip = () => {
               className="w-10 h-10 flex-shrink-0"
               dangerouslySetInnerHTML={{ __html: h.icon }}
             />
-            <h4 className="text-sm font-bold text-[var(--text-primary)] whitespace-normal">{h.title}</h4>
+            <h4 className="text-sm font-bold text-[var(--text-primary)] whitespace-normal">{t(h.title)}</h4>
           </div>
         ))}
       </div>

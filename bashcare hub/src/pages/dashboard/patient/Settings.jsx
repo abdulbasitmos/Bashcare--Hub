@@ -136,9 +136,12 @@ const Settings = () => {
                 onChange={(e) => setLanguage(e.target.value)}
                 className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 text-slate-900 "
               >
-                <option value="en">English (Global)</option>
+                <option value="en">English (US)</option>
                 <option value="fr">Français (French)</option>
                 <option value="es">Español (Spanish)</option>
+                <option value="yo">Yorùbá (Yoruba)</option>
+                <option value="de">Deutsch (German)</option>
+                <option value="pt">Português (Portuguese)</option>
               </select>
             </div>
           </section>

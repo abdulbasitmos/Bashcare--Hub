@@ -612,6 +612,9 @@ const OfficerSettings = ({ user }) => {
                 <option value="en">EN</option>
                 <option value="fr">FR</option>
                 <option value="es">ES</option>
+                <option value="yo">YO</option>
+                <option value="de">DE</option>
+                <option value="pt">PT</option>
               </select>
             </div>
           </div>
